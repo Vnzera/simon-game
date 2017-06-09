@@ -5,10 +5,10 @@ var blue = document.querySelector('#blue');
 var yellow = document.querySelector('#yellow');
 
 // buttons
-var count = document.querySelector('#count');
-var start = document.querySelector('#start');
-var strict = document.querySelector('#strict');
-var reset = document.querySelector('#reset');
+var countBtn = document.querySelector('#count');
+var startBtn = document.querySelector('#start');
+var strictBtn = document.querySelector('#strict');
+var resetBtn = document.querySelector('#reset');
 
 // game variables
 var headline = document.querySelector('#headline');
@@ -16,7 +16,7 @@ var gameContainer = document.querySelector('#game-container');
 var count = 0;
 var currentSequence = [];
 var userSequence = [];
-var strictMode = 'off';
+var strictMode = false;
 
 // audio elements
 var greenAudio = document.createElement('audio');
@@ -28,8 +28,11 @@ redAudio.setAttribute('src', 'https://s3.amazonaws.com/freecodecamp/simonSound2.
 yellowAudio.setAttribute('src', 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
 blueAudio.setAttribute('src', 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
 
-start.addEventListener('click', next);
-reset.addEventListener('click', reset);
+startBtn.addEventListener('click', next);
+resetBtn.addEventListener('click', reset);
+strictBtn.addEventListener('click', () => {
+  strictMode = !strictMode;
+});
 
 // ======================= main game code
 
@@ -37,12 +40,10 @@ function next() {
 
   resetHeadline();
 
-  if (count !== 0) { // count starts at zero
-    count++;
-    generateNumber();
-
-  } else if (count === 0) {
+  if (count === 0) {
     gameContainer.addEventListener('click', userClicks);
+    count++;
+    countBtn.innerText = `Count: ${count}`;
     generateNumber();
 
   } else if(count === 20) {
@@ -51,6 +52,10 @@ function next() {
       reset();
     }, 2000);
 
+  } else {
+    count++;
+    countBtn.innerText = `Count: ${count}`;
+    generateNumber();
   }
 
 }
@@ -135,7 +140,7 @@ function wrongChoice() { // handle wrong choices based on strictMode value
   userSequence = [];
   console.log('wrongChoice made');
 
-  if (strictMode === 'on') {
+  if (strictMode === true) {
     console.log('strictMode:', strictMode);
     headline.innerText = 'You lost. Resetting the game...';
     reset();
