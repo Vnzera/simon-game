@@ -34,6 +34,7 @@ startBtn.addEventListener('click', next);
 resetBtn.addEventListener('click', reset);
 strictBtn.addEventListener('click', function () {
   strictMode = !strictMode;
+  strictBtn.innerText = 'Strict: ' + strictMode;
 });
 
 // ======================= main game code
