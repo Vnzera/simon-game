@@ -1,0 +1,25 @@
+{
+  "name": "simon-game",
+  "version": "1.0.0",
+  "description": "Simon Game Challenge",
+  "main": "scripts.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js": "babel src/scripts.js --watch --out-file public/scripts.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rushh/simon-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rushh/simon-game/issues"
+  },
+  "homepage": "https://github.com/Rushh/simon-game#readme"
+}
