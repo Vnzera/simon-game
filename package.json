@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "js": "babel src/scripts.js --watch --out-file public/scripts.js"
   },
   "repository": {
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Rushh/simon-game/issues"
   },
-  "homepage": "https://github.com/Rushh/simon-game#readme"
+  "homepage": "https://github.com/Rushh/simon-game#readme",
+  "engines": {
+    "node": "8.0.0"
+  }
 }
