@@ -2,9 +2,15 @@
   height: 100vh;
 }
 
+#title {
+  margin-top: 1.8rem;
+}
+
 @media screen and (max-width: 576px) {
   #game-container {
     border-radius: 50px;
+    height: 51%;
+
   }
 
    .tiles {
@@ -16,10 +22,10 @@
 
 #game-container {
 	  border-radius: 50px;
-    height: 60%;
+    height: 51%;
     width: 75%;
     background-color: #0a151f;
-    margin: 0 auto;
+    margin: -1.7rem auto 0 auto;
     position: absolute;
     top: 42%;
     left: 50%;
@@ -35,8 +41,8 @@
 }
 
 .tiles {
-  width: 22%;
-  height: 16.5%;
+  width: 25%;
+  height: 20%;
 	background: red;
 	border-radius: 10rem;
 }
@@ -44,7 +50,7 @@
 #green {
   position: absolute;
   top: 20%;
-  left: 20%;
+  left: 15%;
   background-color: green;
   border: solid 1.5px black;
 }
@@ -52,7 +58,7 @@
 #red {
   position: absolute;
   top: 20%;
-  right: 20%;
+  right: 15%;
   background-color: red;
   border: solid 1.5px black;
 }
@@ -60,7 +66,7 @@
 #yellow {
   position: absolute;
   bottom: 20%;
-  left: 20%;
+  left: 15%;
   background-color: yellow;
   border: solid 1.5px black;
 }
@@ -68,7 +74,7 @@
 #blue {
   position: absolute;
   bottom: 20%;
-  right: 20%;
+  right: 15%;
   background-color: blue;
   border: solid 1.5px black;
 }
