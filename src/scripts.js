@@ -121,11 +121,10 @@ function userClicks(event) {
 
 // Reset game if user choice is incorrect. Otherwise game continues until sequence is repeated completely
 function checkChoices(choice) {
-  var choiceIndex = userSequence.length - 1;
   userSequence.push(choice);
+  var choiceIndex = userSequence.length - 1;
 
   if (userSequence[choiceIndex] === currentSequence[choiceIndex]) {
-    console.log('Correct! Keep going.');
 
     if (userSequence.length === currentSequence.length) {// if user has successfully repeated the pattern then add a new light/button to the pattern
       headline.innerText = 'Success! Get ready';
@@ -143,11 +142,11 @@ function wrongChoice() { // handle wrong choices based on strictMode value
 
   if (strictMode === true) {
     console.log('strictMode:', strictMode);
-    headline.innerText = 'You lost. Resetting the game...';
+    headline.innerText = 'Resetting...';
     reset();
   }
 
-  headline.innerText = 'Wrong choice. Replaying sequence.';
+  headline.innerText = 'Try again';
   resetHeadline();
   lightSequence();
 }
@@ -161,7 +160,7 @@ function resetHeadline() { // sends messages through headline to the user
     headline.innerText = 'Focus';
   }
 
-}, 1700);
+}, 1300);
 
 }
 
