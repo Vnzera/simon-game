@@ -34,27 +34,30 @@ reset.addEventListener('click', reset);
 // ======================= main game code
 
 function next() {
+
   resetHeadline();
 
   if (count !== 0) { // count starts at zero
     count++;
-  }
-  if (count === 0) {
+    generateNumber();
+
+  } else if (count === 0) {
     gameContainer.addEventListener('click', userClicks);
-  }
-  if(count === 20) {
+    generateNumber();
+
+  } else if(count === 20) {
     headline.innerText = 'You won. Congratulations!';
     setTimeout(() => {
       reset();
     }, 2000);
+
   }
 
-  generateNumber();
 }
 
 function generateNumber() { // generate number from 1-4
   var number = Math.floor(Math.random() * 4) + 1;
-  numberString = number.toString();
+  var numberString = number.toString();
   currentSequence.push(numberString);
   lightSequence();
 }
@@ -112,26 +115,30 @@ function userClicks(event) {
 
 // if the choice is correct then push it to userSequence
 function checkChoices(choice) {
-  console.log('choice id:', choice);
-  console.log(typeof choice)
+  console.log('choice id:', choice, 'type:', typeof choice);
+  var choiceNumber = Number(choice);
+  var currentIndex = userSequence.length;
 
-  if (choice === currentSequence[count]) { // here is why count is not initially incremented and remains at 0 for the first try
+  if (userSequence[userIndex] === currentSequence[currentIndex]) { // here is why count is not initially incremented and remains at 0 for the first try
     userSequence.push(choice);
+    console.log('correct choice');
 
     if (userSequence.length === currentSequence.length) {// if user has successfully repeated the pattern then add a new light/button to the pattern
       console.log('userSequence === currentSequence');
       userSequence = [];
       next();
     }
-  } else if(choice !== currentSequence[count]) {
+  } else if(userSequence[userIndex] !== currentSequence[currentIndex]) {
     wrongChoice();
   }
 }
 
 function wrongChoice() { // handle wrong choices based on strictMode value
   userSequence = [];
+  console.log('wrongChoice made');
 
   if (strictMode === 'on') {
+    console.log('strictMode:', strictMode);
     headline.innerText = 'You lost. Press start to try again.';
     reset();
   }
@@ -159,4 +166,5 @@ function reset() { // reset game variables and start over
   currentSequence = [];
   userSequence = [];
   next();
+  console.log('reset called');
 }
