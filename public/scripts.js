@@ -1,7 +1,5 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 // tiles
 var green = document.querySelector('#green');
 var red = document.querySelector('#red');
@@ -115,24 +113,21 @@ function userClicks(event) {
   checkChoices(choice);
 }
 
-// if the choice is correct then push it to userSequence
+// Reset game if user choice is incorrect. Otherwise game continues until sequence is repeated completely
 function checkChoices(choice) {
-  console.log('choice id:', choice, 'type:', typeof choice === 'undefined' ? 'undefined' : _typeof(choice));
-  var choiceNumber = Number(choice);
-  var currentIndex = userSequence.length;
+  var choiceIndex = userSequence.length - 1;
+  userSequence.push(choice);
 
-  if (userSequence[userIndex] === currentSequence[currentIndex]) {
-    // here is why count is not initially incremented and remains at 0 for the first try
-    userSequence.push(choice);
-    console.log('correct choice');
+  if (userSequence[choiceIndex] === currentSequence[choiceIndex]) {
+    console.log('Correct! Keep going.');
 
     if (userSequence.length === currentSequence.length) {
       // if user has successfully repeated the pattern then add a new light/button to the pattern
-      console.log('userSequence === currentSequence');
+      headline.innerText = 'Success! Get ready';
       userSequence = [];
       next();
     }
-  } else if (userSequence[userIndex] !== currentSequence[currentIndex]) {
+  } else if (userSequence[choiceIndex] !== currentSequence[choiceIndex]) {
     wrongChoice();
   }
 }
@@ -144,7 +139,7 @@ function wrongChoice() {
 
   if (strictMode === 'on') {
     console.log('strictMode:', strictMode);
-    headline.innerText = 'You lost. Press start to try again.';
+    headline.innerText = 'You lost. Resetting the game...';
     reset();
   }
 
@@ -162,7 +157,7 @@ function resetHeadline() {
     } else {
       headline.innerText = 'Focus';
     }
-  }, 1500);
+  }, 1700);
 }
 
 function reset() {
