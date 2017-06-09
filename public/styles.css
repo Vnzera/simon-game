@@ -1,15 +1,15 @@
 .container-fluid {
-  height: 100vh;
+  height: 77.3vh;
 }
 
 #title {
   margin-top: 1.8rem;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (min-width: 450px) {
   #game-container {
-    border-radius: 50px;
-    height: 51%;
+    max-width: 300px;
+    max-height: 390px;
 
   }
 
@@ -17,15 +17,17 @@
      width: 20%;
      height: 20%;
      border-radius: 7rem;
+     max-width: 100px;
+     max-height: 100px;
    }
  }
 
 #game-container {
 	  border-radius: 50px;
-    height: 51%;
-    width: 75%;
+    height: 55%;
+    width: 70%;
     background-color: #0a151f;
-    margin: -1.7rem auto 0 auto;
+    margin: 0 auto;
     position: absolute;
     top: 42%;
     left: 50%;
@@ -41,8 +43,10 @@
 }
 
 .tiles {
-  width: 25%;
+  width: 23%;
   height: 20%;
+  max-width: 62px;
+  max-height: 60px;
 	background: red;
 	border-radius: 10rem;
 }
