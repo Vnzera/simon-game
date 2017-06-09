@@ -30,6 +30,7 @@ yellowAudio.setAttribute('src', 'https://s3.amazonaws.com/freecodecamp/simonSoun
 blueAudio.setAttribute('src', 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
 
 start.addEventListener('click', next);
+reset.addEventListener('click', reset);
 
 // ======================= main game code
 
@@ -66,11 +67,11 @@ function lightSequence() {
   currentSequence.forEach(function (number, index) {
     index += 1; // increment for use in setTimeout/delay time
     var tileLit = document.querySelectorAll('[data-id=\'' + number + '\']')[0];
-    console.log(tileLit);
     lightUp(tileLit, index, number);
   });
 }
 
+// called by lightSequence and lights up the tile, uses index for spacing out the timing and plays the audio through data-id attribute
 function lightUp(tile, index, number) {
   setTimeout(function () {
     tile.style.opacity = 0.5;
@@ -82,6 +83,7 @@ function lightUp(tile, index, number) {
   }, index * 1300); // restores opacity
 }
 
+// handles audio file to be played based on data-id value of user's choice
 function audioPlay(number) {
 
   switch (number) {
@@ -111,34 +113,43 @@ function userClicks(event) {
   checkChoices(choice);
 }
 
+// if the choice is correct then push it to userSequence
 function checkChoices(choice) {
+  console.log('choice id:', choice);
+
+  choice = choice.toString();
+
   if (choice === currentSequence[count]) {
+    // here is why count is not initially incremented and remains at 0 for the first try
     userSequence.push(choice);
 
     if (userSequence.length === currentSequence.length) {
+      // if user has successfully repeated the pattern then add a new light/button to the pattern
+      console.log('userSequence === currentSequence');
+      userSequence = [];
       next();
     }
-  } else {
+  } else if (choice !== currentSequence[count]) {
     wrongChoice();
   }
 }
 
 function wrongChoice() {
+  // handle wrong choices based on strictMode value
   userSequence = [];
 
   if (strictMode === 'on') {
-    count = 0;
-    currentSequence[0];
     headline.innerText = 'You lost. Press start to try again.';
-    resetHeadline();
-  } else if (strictMode === 'off') {
-    headline.innerText = 'Wrong choice. Replaying sequence.';
-    resetHeadline();
-    lightSequence();
+    reset();
   }
+
+  headline.innerText = 'Wrong choice. Replaying sequence.';
+  resetHeadline();
+  lightSequence();
 }
 
 function resetHeadline() {
+  // sends messages through headline to the user
 
   setTimeout(function () {
     if (count === 0) {
@@ -146,10 +157,11 @@ function resetHeadline() {
     } else {
       headline.innerText = 'Focus';
     }
-  }, 1000);
+  }, 1500);
 }
 
 function reset() {
+  // reset game variables and start over
   count = 0;
   currentSequence = [];
   userSequence = [];
