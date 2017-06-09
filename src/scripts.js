@@ -138,10 +138,8 @@ function checkChoices(choice) {
 
 function wrongChoice() { // handle wrong choices based on strictMode value
   userSequence = [];
-  console.log('wrongChoice made');
 
   if (strictMode === true) {
-    console.log('strictMode:', strictMode);
     headline.innerText = 'Resetting...';
     reset();
   }
@@ -169,5 +167,4 @@ function reset() { // reset game variables and start over
   currentSequence = [];
   userSequence = [];
   next();
-  console.log('reset called');
 }
