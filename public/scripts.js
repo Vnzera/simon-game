@@ -80,6 +80,7 @@ function lightSequence() {
 // called by lightSequence and lights up the tile, uses index for spacing out the timing and plays the audio through data-id attribute
 function lightUp(tile, index, numberString) {
   setTimeout(function () {
+    console.log('tile:', tile);
     tile.style.opacity = 0.5;
     audioPlay(numberString);
   }, index * 1000); // adds delayed affect for tile light up
@@ -116,6 +117,7 @@ function audioPlay(numberString) {
 
 function userClicks(event) {
   var choice = event.target.dataset.id;
+  audioPlay(choice);
   checkChoices(choice);
 }
 
