@@ -10,7 +10,6 @@
   #game-container {
     max-width: 300px;
     max-height: 390px;
-
   }
 
    .tiles {
@@ -24,8 +23,8 @@
 
 #game-container {
 	  border-radius: 50px;
-    height: 55%;
-    width: 70%;
+    height: 17rem;
+    width: 17rem;
     background-color: #0a151f;
     margin: 0 auto;
     position: absolute;
